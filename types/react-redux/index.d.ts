@@ -19,22 +19,18 @@
 // https://github.com/DefinitelyTyped/DefinitelyTyped/issues/20796
 
 import * as React from 'react';
-import * as Redux from 'redux';
+import { Store, Action, AnyAction, ActionCreator, Dispatch } from 'redux';
 
 type ComponentClass<P> = React.ComponentClass<P>;
 type StatelessComponent<P> = React.StatelessComponent<P>;
 type Component<P> = React.ComponentType<P>;
 type ReactNode = React.ReactNode;
-type Action = Redux.Action;
-type Store<S> = Redux.Store<S>;
-type Dispatch<A extends Action = Redux.AnyAction> = Redux.Dispatch<A>;
-type ActionCreator<A> = Redux.ActionCreator<A>;
 
 // Diff / Omit taken from https://github.com/Microsoft/TypeScript/issues/12215#issuecomment-311923766
 type Diff<T extends string, U extends string> = ({ [P in T]: P } & { [P in U]: never } & { [x: string]: never })[T];
 type Omit<T, K extends keyof T> = Pick<T, Diff<keyof T, K>>;
 
-export interface DispatchProp<A extends Action = Redux.AnyAction> {
+export interface DispatchProp<A extends Action = AnyAction> {
   dispatch?: Dispatch<A>;
 }
 
